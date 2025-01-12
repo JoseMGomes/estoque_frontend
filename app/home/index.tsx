@@ -31,11 +31,12 @@ const Home: React.FC = () => {
 
   const handleCadastroUsuario = () => {
     console.log('Cadastro de Usuário pressionado');
-    router.push("/singup")
+    router.push("/singup");
   };
 
   const handleListaEstoque = () => {
     console.log('Lista de Estoque pressionado');
+    router.push("/listEstoque")
   };
 
   const handleAdicionarItem = () => {

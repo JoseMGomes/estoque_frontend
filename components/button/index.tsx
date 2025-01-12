@@ -1,5 +1,6 @@
 import React from 'react';
-import { TouchableOpacity, Text, TouchableOpacityProps, StyleSheet } from 'react-native';
+import { TouchableOpacityProps } from 'react-native';
+import { Container, Title } from './styles';
 
 interface ButtonProps extends TouchableOpacityProps {
   title: string;
@@ -7,27 +8,10 @@ interface ButtonProps extends TouchableOpacityProps {
 
 const Button: React.FC<ButtonProps> = ({ title, ...rest }) => {
   return (
-    <TouchableOpacity style={styles.container} {...rest}>
-      <Text style={styles.text}>{title}</Text>
-    </TouchableOpacity>
+    <Container {...rest}>
+      <Title>{title}</Title>
+    </Container>
   );
 };
 
 export default Button;
-
-
-const styles = StyleSheet.create({
-  container: {
-    width: '100%',
-    height: 50,
-    backgroundColor: '#d52247',
-    borderRadius: 8,
-    marginTop: 30,
-    alignSelf: 'center',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  text: {
-    color: '#fff', 
-  },
-});

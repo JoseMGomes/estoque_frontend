@@ -1,6 +1,7 @@
 import React, { useRef, useEffect, useCallback } from "react";
-import { TextInputProps, View, TextInput, StyleSheet } from "react-native"; 
+import { TextInputProps } from "react-native"; 
 import { useField } from "@unform/core";
+import { Container, InputComponent } from './styles';
 
 interface InputProps extends TextInputProps {
   name: string;
@@ -17,9 +18,11 @@ const Input: React.FC<InputProps> = ({
   useEffect(() => {
     inputRef.current.value = defaultValue;
   }, [defaultValue]);
+
   useEffect(() => {
     if (inputRef.current) inputRef.current.value = defaultValue;
   }, [defaultValue]);
+
   useEffect(() => {
     registerField({
       name: fieldName,
@@ -52,34 +55,15 @@ const Input: React.FC<InputProps> = ({
   );
 
   return (
-    <View style={styles.container}>
-      <TextInput
+    <Container>
+      <InputComponent
         ref={inputRef}
         onChangeText={handleChangeText}
         defaultValue={defaultValue}
         {...rest}
-        style={styles.inputComponent}
       />
-    </View>
+    </Container>
   );
 };
 
 export default Input;
-
-const styles = StyleSheet.create({
-  container: {
-    paddingHorizontal: 15,
-    height: 40,
-    backgroundColor: '#f0f0f0', 
-    borderRadius: 4,
-    flexDirection: 'row',
-    alignItems: 'center',
-    borderBottomColor: '#ccc', 
-    borderBottomWidth: 1,
-  },
-  inputComponent: {
-    flex: 1,
-    width: 250,
-    color: '#333', 
-  },
-});

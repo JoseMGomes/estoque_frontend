@@ -6,8 +6,9 @@ import { RegisterUser } from "@/types/registerUser";
 import Header from "@/components/header";
 import Input from "@/components/input";
 import Button from "@/components/button";
-import { Label } from "../login/styles";
+
 import { router } from "expo-router";
+import { Label } from "@/components/label/styles";
 
 interface RegisterUserData extends RegisterUser {
   passwordConfirm: string;
