@@ -1,30 +1,30 @@
+
 import React, { useRef } from "react";
-import { Form } from "@unform/mobile";
-import { Text, View } from "react-native"; 
-import { styles } from "./styles";  
+import {Form } from "@unform/mobile"
+import { Container, Content, Label } from "./styles";
 import Title from "@/components/title";
 import Input from "@/components/input";
 import Button from "@/components/button";
 
+
 export default function Login() {
   const formRef: any = useRef(null);
-
   const handleSubmit = async (data: any) => {
     try {
-      console.log('vai');
+      console.log('vai')
     } catch (err) {
-      console.log(err);
+      
     }
   };
 
   return (
-    <View style={styles.container}>
-      <View style={styles.content}>
+    <Container>
+      <Content>
         <Form ref={formRef} onSubmit={handleSubmit}>
           <Title title="Seja Bem Vindo !" />
-          <Text style={styles.label}>Email:</Text>
+          <Label>Email:</Label>
           <Input name="email" placeholder="Digite seu email:" />
-          <Text style={styles.label}>Senha:</Text>
+          <Label>Senha:</Label>
           <Input
             name="password"
             placeholder="Digite sua senha:"
@@ -35,7 +35,9 @@ export default function Login() {
             onPress={() => formRef.current?.submitForm()}
           />
         </Form>
-      </View>
-    </View>
+      </Content>
+    </Container>
   );
 };
+
+

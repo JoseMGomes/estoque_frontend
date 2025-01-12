@@ -1,23 +1,23 @@
-import { StyleSheet } from 'react-native';
+
+import styled from 'styled-components/native';
 import { colors } from '@/constants/colors';
 
-export const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: colors.background,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  content: {
-    width: '80%',
-  },
-  label: {
-    color: colors.white,
-    marginTop: 20,
-    marginBottom: 5,
-    maxWidth: 200,
-  },
-  image: {
-    
-  },
-});
+export const Container = styled.View`
+  flex: 1;
+  background-color: ${colors.background};
+  align-items: center;
+  justify-content: center;
+`;
+
+export const Content = styled.View`
+    width: 80%;
+`;
+
+export const Label = styled.Text`
+    color: ${colors.white };
+    margin-top: 20px;
+    margin-bottom: 5px;
+    max-width: 200px;
+`;
+
+export const Image = styled.Image``;
