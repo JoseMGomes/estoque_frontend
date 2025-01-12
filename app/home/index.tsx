@@ -31,6 +31,7 @@ const Home: React.FC = () => {
 
   const handleCadastroUsuario = () => {
     console.log('Cadastro de Usuário pressionado');
+    router.push("/singup")
   };
 
   const handleListaEstoque = () => {
