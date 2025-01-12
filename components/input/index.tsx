@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useCallback } from "react";
+import React, { useRef, useEffect, useState, useCallback } from "react";
 import { TextInputProps } from "react-native"; 
 import { useField } from "@unform/core";
 import { Container, InputComponent } from './styles';
@@ -14,6 +14,7 @@ const Input: React.FC<InputProps> = ({
 }: InputProps) => {
   const inputRef: any = useRef(null);
   const { fieldName, registerField, defaultValue, error } = useField(name);
+  const [isFocused, setIsFocused] = useState(false);  // Estado para controlar o foco
 
   useEffect(() => {
     inputRef.current.value = defaultValue;
@@ -54,12 +55,25 @@ const Input: React.FC<InputProps> = ({
     [onChangeText]
   );
 
+  // Funções para controlar o foco
+  const handleFocus = () => {
+    setIsFocused(true);
+  };
+
+  const handleBlur = () => {
+    setIsFocused(false);
+  };
+
   return (
     <Container>
       <InputComponent
         ref={inputRef}
         onChangeText={handleChangeText}
         defaultValue={defaultValue}
+        placeholderTextColor="#888"
+        onFocus={handleFocus}  
+        onBlur={handleBlur}    
+        
         {...rest}
       />
     </Container>

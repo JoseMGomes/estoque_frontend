@@ -1,14 +1,15 @@
 import React from "react";
 import { Stack } from "expo-router";
-import { View, StyleSheet, Text } from "react-native";
+import { View, StyleSheet, Text, StatusBar } from "react-native";
 
 export default function Layout() {
   return (
     <View style={styles.container}>
- 
+      <StatusBar barStyle="dark-content" />
+
       <Stack
         screenOptions={{
-          headerShown: false, 
+          headerShown: false,
         }}
       />
     </View>
@@ -18,17 +19,6 @@ export default function Layout() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#121212", 
-  },
-  header: {
-    height: 60,
-    backgroundColor: "#FF9800", 
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  headerTitle: {
-    color: "#FFF",
-    fontSize: 18,
-    fontWeight: "bold",
+    backgroundColor: "#121212",
   },
 });

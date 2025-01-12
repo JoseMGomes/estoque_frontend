@@ -6,7 +6,7 @@
 export const colors = {
   primary: "#d52247",
   secondary: "#A74F4F",
-  background: "#2E2E2E",
+  background: "#000",
   backgroundOpacity: "rgba(0, 0, 0, 0.1)",
   white: "#fff",
   backgroundCardDefault: "rgba(255,255,255,0.1)",

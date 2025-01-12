@@ -17,10 +17,10 @@ const Card: React.FC<EstoqueListProps> = ({ item }: EstoqueListProps) => {
   return (
     <Container onPress={navigationScreen}>
       <Content>
-        {item.image_path ? (
-          <ImageItem source={{ uri: item.image_path }} />
+        {item.image ? (
+          <ImageItem source={require("../../assets/images/productList.png")} />
         ) : (
-            <ImageItem source={require("../../assets/images/react-logo.png")} />
+            <ImageItem source={require("../../assets/images/productList.png")} />
         )}
         <View>
           <Text

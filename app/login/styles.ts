@@ -20,4 +20,11 @@ export const Label = styled.Text`
     max-width: 200px;
 `;
 
-export const Image = styled.Image``;
+export const Image = styled.Image`
+    width: 300;
+    height: 150;
+    margin-bottom: 40;
+    margin-left: 15;
+    align-self: "center"
+
+`;
