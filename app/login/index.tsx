@@ -5,13 +5,15 @@ import { Container, Content, Label } from "./styles";
 import Title from "@/components/title";
 import Input from "@/components/input";
 import Button from "@/components/button";
+import { router } from "expo-router";
 
 
 export default function Login() {
   const formRef: any = useRef(null);
   const handleSubmit = async (data: any) => {
     try {
-      console.log('vai')
+      console.log(data)
+      router.push("/home")
     } catch (err) {
       
     }
@@ -33,6 +35,7 @@ export default function Login() {
           <Button
             title="Entrar"
             onPress={() => formRef.current?.submitForm()}
+
           />
         </Form>
       </Content>
