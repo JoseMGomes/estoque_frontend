@@ -24,17 +24,26 @@ export async function getAllItemsAsync() {
 }
 
 
-export async function patchUpdateItemQuantityAsync(stockId: string) {
+
+export async function patchUpdateItemQuantityAsync(
+  stockId: string,
+  body: { quantity: number; updateQuantity: "add" | "remove" }
+  
+) {
   try {
+    console.log(body)
+    console.log(stockId)
     const { data }: RegisterItemPropsResponse = await api.patch(
-      `/products/${stockId}/quantity`
+      `/products/${stockId}/quantity`,
+      body
     );
     return data;
   } catch (err: any) {
-    Alert.alert("Ops, aconteceu um erro", err.response?.error || "Erro desconhecido");
+    Alert.alert("Ops, aconteceu um erro", err.response?.error);
     return false;
   }
 }
+
 
 export async function deleteItemAsync(stockId: string) {
   try {
@@ -51,6 +60,7 @@ export async function deleteItemAsync(stockId: string) {
 
 export async function postCreateItemAsync(product: RegisterItemProps) {
   try {
+    console.log(product)
     const { data }: RegisterItemPropsResponse = await api.post(
       "/products/",
       product

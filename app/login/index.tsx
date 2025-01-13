@@ -33,8 +33,8 @@ const Login: React.FC = () => {
         <Form ref={formRef} onSubmit={handleSubmit}>
         <Image source={require("../../assets/images/mindGroup.png")}/>
           <Title title="Seja Bem Vindo!" />
-          <Label>Email:</Label>
-          <Input name="email" placeholder="Digite seu email" />
+          <Label>E-mail:</Label>
+          <Input name="email" placeholder="Digite seu e-mail" />
           <Label>Senha:</Label>
           <Input
             name="password"

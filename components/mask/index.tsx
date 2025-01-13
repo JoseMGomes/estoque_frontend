@@ -12,6 +12,8 @@ interface InputMask extends TextInputMaskProps {
   setRawText: React.Dispatch<React.SetStateAction<string>>;
 }
 
+
+
 const InputMask: React.FC<InputMask> = (
   { type, initial,setRawText, rawText, ...rest },
   inputRef
@@ -19,11 +21,11 @@ const InputMask: React.FC<InputMask> = (
   const [text, setText] = useState(initial || "");
 
   const handleChangeText = useCallback(
-    (maskedText: string, unmaskedText: any) => {
+    (maskedText:any, unmaskedText:any) => {
       setText(maskedText);
       setRawText(unmaskedText);
     },
-    []
+    [text]
   );
 
   return (

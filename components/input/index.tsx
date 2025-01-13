@@ -14,7 +14,7 @@ const Input: React.FC<InputProps> = ({
 }: InputProps) => {
   const inputRef: any = useRef(null);
   const { fieldName, registerField, defaultValue, error } = useField(name);
-  const [isFocused, setIsFocused] = useState(false);  // Estado para controlar o foco
+  const [isFocused, setIsFocused] = useState(false); 
 
   useEffect(() => {
     inputRef.current.value = defaultValue;
@@ -55,7 +55,7 @@ const Input: React.FC<InputProps> = ({
     [onChangeText]
   );
 
-  // Funções para controlar o foco
+
   const handleFocus = () => {
     setIsFocused(true);
   };
