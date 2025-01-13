@@ -6,9 +6,10 @@ import { RegisterUser } from "@/types/registerUser";
 import Header from "@/components/header";
 import Input from "@/components/input";
 import Button from "@/components/button";
-
 import { router } from "expo-router";
 import { Label } from "@/components/label/styles";
+import { postRegisterUserAsync } from "@/services/userServices";
+
 
 interface RegisterUserData extends RegisterUser {
   passwordConfirm: string;
@@ -24,6 +25,7 @@ const SingUp: React.FC = () => {
         return false;
       }
 
+      console.log("Usuario cadastrado");
       console.log("Dados do formulário:", data);
 
       if (data.password !== data.passwordConfirm) {
@@ -31,10 +33,18 @@ const SingUp: React.FC = () => {
         return false;
       }
 
-      console.log("Usuario cadastrado");
-      router.push("/home");
+      
+      const response = await postRegisterUserAsync(data);
+
+      if (response) {
+        Alert.alert("Sucesso", "Usuário cadastrado com sucesso!");
+        router.push("/home");  
+      } else {
+        Alert.alert("Erro", "Não foi possível cadastrar o usuário.");
+      }
     } catch (err) {
       console.error("Erro ao enviar o formulário:", err);
+      Alert.alert("Erro", "Ocorreu um erro ao processar o cadastro.");
       return false;
     }
   }

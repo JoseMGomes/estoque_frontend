@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   Container,
   Content,
@@ -12,8 +12,25 @@ import Button from "@/components/button";
 import { Alert, View } from "react-native";
 import { router } from "expo-router";
 import { MaterialIcons } from "@expo/vector-icons";
+import { getAuthenticatedUserAsync } from "@/services/userServices";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { User } from "@/types/userResponsSing";
+
 
 const Home: React.FC = () => {
+      const [user, setUser] = useState<User|null>()
+
+  const fetchUserData = async () => {
+    const userData = await AsyncStorage.getItem("userStorageAsync")
+    if (userData ) {
+     setUser(JSON.parse(userData))
+    }
+  };
+  useEffect(() => {
+
+    fetchUserData();
+  }, []); 
+
   const handleLogout = () => {
     Alert.alert(
       "Confirmar saída",
@@ -55,10 +72,10 @@ const Home: React.FC = () => {
     <Container>
       <Header>
         <HeaderCard>
-          <HeaderText>João Silva</HeaderText>
-          <HeaderText>joao@exemplo.com</HeaderText>
+          <HeaderText>{user?.name || "Carregando..."}</HeaderText>
+          <HeaderText>{user?.email || "Carregando..."}</HeaderText> 
         </HeaderCard>
-          <IconButton onPress={handleLogout}>
+        <IconButton onPress={handleLogout}>
           <MaterialIcons name="power-settings-new" size={18} color="white" />
         </IconButton>
       </Header>

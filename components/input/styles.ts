@@ -12,5 +12,5 @@ export const Container = styled.View`
 export const InputComponent = styled.TextInput`
   flex: 1;
   width: 250px;
-  color: #333;
+  color: #9e9e9e;
 `;

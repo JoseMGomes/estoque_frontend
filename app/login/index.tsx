@@ -1,44 +1,44 @@
 import React, { useRef } from "react";
 import { Form } from "@unform/mobile";
-import { Container, Content, Label, Image } from "./styles";
-import Title from "@/components/title";
-import Input from "@/components/input";
-import Button from "@/components/button";
+import { Container, Content, Image, Label } from "./styles";
+import { Alert } from "react-native";
+import { postSignInUserAsync } from "@/services/userServices";
 import { router } from "expo-router";
-import { StatusBar } from "react-native";
+import Title from "@/components/title";
+import Button from "@/components/button";
+import { LoginUser } from "@/types/loginUser";
+import Input from "@/components/input";
 
-
-export default function Login() {
+const Login: React.FC = () => {
   const formRef: any = useRef(null);
 
-  const handleSubmit = async (data: any) => {
+  const handleSubmit = async (data: LoginUser) => {
     try {
-      console.log(data);
-      router.push("/home");
+      const response = await postSignInUserAsync(data);
+      console.log("botão entrar");
+
+      if (typeof response === "boolean") {
+        Alert.alert("Erro", "Verifique sua senha e email");
+        return false;
+      }
+      router.push("/home")
     } catch (err) {
-    
+      Alert.alert("Erro ao autenticar", "Verifique sua senha e email");
     }
   };
 
   return (
-          
-    
     <Container>
-            <StatusBar barStyle="dark-content" />
-      
       <Content>
-        
-        <Image
-          source={require("../../assets/images/mindGroup.png")}  
-        />
         <Form ref={formRef} onSubmit={handleSubmit}>
-          
+        <Image source={require("../../assets/images/mindGroup.png")}/>
+          <Title title="Seja Bem Vindo!" />
           <Label>Email:</Label>
-          <Input name="email" placeholder="Digite seu email:" />
+          <Input name="email" placeholder="Digite seu email" />
           <Label>Senha:</Label>
           <Input
             name="password"
-            placeholder="Digite sua senha:"
+            placeholder="Digite sua senha"
             secureTextEntry
           />
           <Button
@@ -49,4 +49,6 @@ export default function Login() {
       </Content>
     </Container>
   );
-}
+};
+
+export default Login;

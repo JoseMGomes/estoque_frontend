@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Container } from "./styles";
-import { FlatList } from "react-native";
-
+import { FlatList, ActivityIndicator } from "react-native";
 import { ItemProps } from "@/types/itemEstoque";
 import Header from "@/components/header";
 import Card from "@/components/card";
+import { getAllItemsAsync } from "@/services/estoqueServices";
+import { colors } from "@/constants/colors";
 
 interface ItemFlatList {
   index: number;
@@ -12,32 +13,29 @@ interface ItemFlatList {
 }
 
 export const ListEstoque: React.FC = () => {
-  const [data, setData] = useState<ItemProps[]>([
-    {
-      createdAt: "2024-04-22T18:46:40.000Z",
-      description: "Descrição",
-      id: 1,
-      image_path: "https://example.com/image1.jpg",
-      is_active: true,
-      is_stock_entry: true,
-      name: "Item 1",
-      quant: 10,
-      updatedAt: "2024-04-22T18:46:40.000Z",
-      value: 100,
-    },
-    {
-      createdAt: "2024-04-23T18:46:40.000Z",
-      description: "Descrição",
-      id: 2,
-      image_path: "https://example.com/image2.jpg",
-      is_active: true,
-      is_stock_entry: false,
-      name: "Item 2",
-      quant: 5,
-      updatedAt: "2024-04-23T18:46:40.000Z",
-      value: 50,
-    },
-  ]);
+  const [data, setData] = useState<ItemProps[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);  
+
+  useEffect(() => {
+    const fetchItems = async () => {
+      const items = await getAllItemsAsync();
+      if (items) {
+        setData(items);
+      }
+      setLoading(false);  
+    };
+
+    fetchItems();
+  }, []);  
+
+  if (loading) {
+    return (
+      <Container>
+        <Header title="Listagem de estoque" />
+        <ActivityIndicator size="large" color={colors.primary} />  
+      </Container>
+    );
+  }
 
   return (
     <Container>
@@ -45,7 +43,7 @@ export const ListEstoque: React.FC = () => {
       <FlatList
         style={{ width: "90%", height: 500, marginTop: 50 }}
         data={data}
-        renderItem={(item: ItemFlatList) => <Card item={item.item} />}
+        renderItem={({ item }: ItemFlatList) => <Card item={item} />}
         keyExtractor={(item: ItemProps) => item.id.toString()}
       />
     </Container>

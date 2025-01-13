@@ -3,8 +3,9 @@ export interface ItemProps {
   name: string;
   image: string | null;
   description: string;
-  quant: number;
+  quantity: number;
   value: number;
   createdAt: string;
   updatedAt: string;
+  is_Stock_entry: boolean
 }

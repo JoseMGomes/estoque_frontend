@@ -18,7 +18,7 @@ const Card: React.FC<EstoqueListProps> = ({ item }: EstoqueListProps) => {
     <Container onPress={navigationScreen}>
       <Content>
         {item.image ? (
-          <ImageItem source={require("../../assets/images/productList.png")} />
+          <ImageItem  source={{ uri: `${item.image}` }}  />
         ) : (
             <ImageItem source={require("../../assets/images/productList.png")} />
         )}
@@ -41,7 +41,7 @@ const Card: React.FC<EstoqueListProps> = ({ item }: EstoqueListProps) => {
               marginBottom: 4,
             }}
           >
-            Quantidade: {item.quant}
+            Quantidade: {item.quantity}
           </Text>
           <Text style={{ color: colors.white, marginBottom: 4 }}>
             {item.description}
@@ -49,7 +49,7 @@ const Card: React.FC<EstoqueListProps> = ({ item }: EstoqueListProps) => {
         </View>
       </Content>
       <Text style={{ marginRight: 20, color: colors.white }}>
-        {item.is_stock_entry ? (
+        {item.id ? (
           <Icon name="arrowup" size={25} color={colors.enter} />
         ) : (
           <Icon name="arrowdown" size={25} color={colors.exit} />
