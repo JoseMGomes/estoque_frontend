@@ -3,4 +3,5 @@ export interface RegisterItemProps {
     description: string;
     price: number;
     image: string | null;
+    quantity: number
   }

@@ -1,17 +1,14 @@
 import React, { useState, useEffect } from "react";
-import { Container, ModalContent, Button, ButtonText, Input, ModalHeader, BoldText, Text } from "./styles";
-import { FlatList, ActivityIndicator, Alert, Modal, View, TextInput } from "react-native";
+import { FlatList, ActivityIndicator, Alert } from "react-native";
 import { ItemProps } from "@/types/itemEstoque";
 import Header from "@/components/header";
 import Card from "@/components/card";
 import { getAllItemsAsync, patchUpdateItemQuantityAsync, deleteItemAsync } from "@/services/estoqueServices";
 import { colors } from "@/constants/colors";
 import { router } from "expo-router";
+import ModalEstoque from "@/components/modal";
+import { Container } from "./styles";
 
-interface ItemFlatList {
-  index: number;
-  item: ItemProps;
-}
 
 export const ListEstoque: React.FC = () => {
   const [data, setData] = useState<ItemProps[]>([]);
@@ -139,86 +136,20 @@ export const ListEstoque: React.FC = () => {
       <FlatList
         style={{ width: "90%", height: 500, marginTop: 50 }}
         data={data}
-        renderItem={({ item }: ItemFlatList) => (
+        renderItem={({ item }: { item: ItemProps }) => (
           <Card item={item} onPress={() => handleCardPress(item)} />
         )}
         keyExtractor={(item: ItemProps) => item.id.toString()}
       />
 
-      <Modal visible={modalVisible} animationType="slide" transparent={true}>
-        <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-          <ModalContent>
-            {selectedItem && (
-              <ModalHeader>
-
-                <Text>
-                 <BoldText> Nome:</BoldText> {selectedItem.name}
-                </Text>
-                <Text>
-                <BoldText> Descrição: </BoldText>{selectedItem.description}
-                </Text>
-                <Text>
-                <BoldText>Quantidade: </BoldText>{selectedItem.quantity}
-                </Text>
-                <Text>
-                <BoldText> Preço: </BoldText>R${selectedItem.price}
-                </Text>
-              </ModalHeader>
-            )}
-
-            <Button onPress={handleUpdateQuantity}>
-              <ButtonText>Atualizar Quantidade</ButtonText>
-            </Button>
-            <Button onPress={handleUpdateProduct}>
-              <ButtonText>Atualizar Produto</ButtonText>
-            </Button>
-            <Button onPress={handleDeleteProduct}>
-              <ButtonText>Excluir Produto</ButtonText>
-            </Button>
-            <Button onPress={() => setModalVisible(false)}>
-              <ButtonText>Fechar</ButtonText>
-            </Button>
-          </ModalContent>
-        </View>
-      </Modal>
-
-      <Modal visible={editQuantityModalVisible} animationType="slide" transparent={true}>
-        <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-          <ModalContent>
-            {selectedItem && (
-              <>
-              <ModalHeader>
-                <Text>
-                  <BoldText>Nome:</BoldText> {selectedItem.name}
-                </Text>
-                <Text>
-                  <BoldText>Descrição:</BoldText> {selectedItem.description}
-                </Text>
-                <Text>
-                  <BoldText>Quantidade Atual:</BoldText> {selectedItem.quantity}
-                </Text>
-                <Input
-                  placeholder="Digite a quantidade a adicionar/remover"
-                  keyboardType="numeric"
-                  value={String(quantityChange)}
-                  onChangeText={(text) => setQuantityChange(Number(text))}
-                />
-                </ModalHeader>
-
-                <Button onPress={handleAddQuantity}>
-                  <ButtonText>Adicionar Quantidade</ButtonText>
-                </Button>
-                <Button onPress={handleRemoveQuantity}>
-                  <ButtonText>Remover Quantidade</ButtonText>
-                </Button>
-                <Button onPress={() => setEditQuantityModalVisible(false)}>
-                  <ButtonText>Fechar</ButtonText>
-                </Button>
-              </>
-            )}
-          </ModalContent>
-        </View>
-      </Modal>
+      <ModalEstoque
+        visible={modalVisible}
+        setVisible={setModalVisible}
+        selectedItem={selectedItem}
+        handleUpdateQuantity={handleUpdateQuantity}
+        handleUpdateProduct={handleUpdateProduct}
+        handleDeleteProduct={handleDeleteProduct}
+      />
     </Container>
   );
 };
