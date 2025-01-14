@@ -4,7 +4,7 @@ import { colors } from '@/constants/colors';
 
 export const Container = styled.View`
   flex: 1;
-  background-color: ${colors.background};
+  background-color: ${colors.black};
   align-items: center;
   justify-content: center;
 `;

@@ -5,7 +5,7 @@ import { colors } from '@/constants/colors';
 
 export const Container = styled.View`
   flex: 1;
-  background-color: #000; 
+  background-color: ${colors.black}; 
   padding: 20px;
 `;
 

@@ -6,12 +6,14 @@
 export const colors = {
   primary: "#d52247",
   secondary: "#A74F4F",
-  background: "#000",
   backgroundOpacity: "rgba(0, 0, 0, 0.1)",
+  black: "#000",
   white: "#fff",
-  backgroundCardDefault: "rgba(255,255,255,0.1)",
+  backgroundCardDefault: "rgb(30, 30, 30)",
+  backgroundModal:"rgb(30, 30, 30)",
   exit: "#ff0000",
   enter: "#00FF19",
   buttonEnter: "#32cd32",
   buttonExit: "#ff1e50",
+  
 };

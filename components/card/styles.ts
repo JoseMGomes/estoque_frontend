@@ -3,7 +3,7 @@ import styled from "styled-components/native";
 
 export const Container = styled.TouchableOpacity`
   width: 100%;
-  min-height: 120px; /* Ajustado para acomodar mais conteúdo */
+  min-height: 120px; 
   border-radius: 10px;
   flex-direction: row;
   border: 0.3px solid ${colors.white};
@@ -11,13 +11,13 @@ export const Container = styled.TouchableOpacity`
   justify-content: space-between;
   margin-top: 10px;
   background-color: ${colors.backgroundCardDefault};
-  padding: 10px; /* Adicionado para espaçamento interno */
+  padding: 10px; 
 `;
 
 export const Content = styled.View`
   flex-direction: row;
-  flex: 1; /* Para o conteúdo ocupar o espaço restante */
-  align-items: center; /* Alinha itens verticalmente */
+  flex: 1; 
+  align-items: center; 
 `;
 
 export const ImageItem = styled.Image`

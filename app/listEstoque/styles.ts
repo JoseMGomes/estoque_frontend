@@ -3,30 +3,46 @@ import { colors } from "@/constants/colors";
 
 export const Container = styled.View`
   flex: 1;
-  background-color: ${colors.background};
+  background-color: ${colors.black};
   align-items: center;
   padding: 20px;
 `;
 
 export const ModalContent = styled.View`
-  width: 80%;
-  background-color: white;
-  border-radius: 10px;
-  padding: 20px;
+  width: 85%;
+  background-color: ${colors.backgroundModal};
+  border-radius: 12px;
+  padding: 25px;
   align-items: center;
   justify-content: center;
-`;
-
-export const ModalTitle = styled.Text`
-  font-size: 18px;
-  font-weight: bold;
-  margin-bottom: 15px;
+  border: 1px solid ${colors.white};
 `;
 
 export const ModalText = styled.Text`
   font-size: 16px;
-  margin-bottom: 10px;
+  color: ${colors.white};
+  text-align: center;
+  margin-bottom: 20px;
 `;
+
+export const ModalHeader = styled.View`
+  padding: 20px;
+  border-radius: 10px;
+  color: ${colors.white};
+`;
+
+
+export const BoldText = styled.Text`
+  font-weight: bold;
+  color: ${colors.white};
+`;
+
+export const Text= styled.Text`
+  color: ${colors.white};
+  font-size: 16px;
+  margin-bottom: 8px;
+`;
+
 
 export const ButtonContainer = styled.View`
   width: 100%;
@@ -35,32 +51,43 @@ export const ButtonContainer = styled.View`
   justify-content: space-between;
 `;
 
-export const InputContainer = styled.View`
-  margin-bottom: 15px;
+export const Button = styled.TouchableOpacity`
+  background-color: ${colors.primary};
+  padding: 15px;
+  border-radius: 8px;
+  margin-top: 30px;
   width: 100%;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const ButtonText = styled.Text`
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
 `;
 
 export const Input = styled.TextInput`
-  border-width: 1px;
-  border-color: ${colors.primary};
-  padding: 10px;
-  border-radius: 5px;
-  width: 100%;
+    background-color: ${colors.white};
+  color: ${colors.black}; 
   font-size: 16px;
+  margin-top: 12px;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid ${colors.primary}; 
 `;
 
-export const Button = styled.TouchableOpacity`
+export const CloseButton = styled.TouchableOpacity`
   background-color: ${colors.primary};
   padding: 12px;
-  border-radius: 5px;
+  border-radius: 8px;
   margin-top: 10px;
   width: 100%;
   align-items: center;
 `;
 
-export const ButtonText = styled.Text`
+export const CloseButtonText = styled.Text`
   color: white;
   font-size: 16px;
   font-weight: bold;
 `;
-
