@@ -4,6 +4,7 @@ import { ModalContent, Text } from '../modal/styles';
 import Button from '../button';
 import { ItemProps } from '@/types/itemEstoque';
 
+
 interface ModalQuantityProps {
     visible: boolean;
     quantityChange: number;
@@ -44,6 +45,8 @@ const ModalQuantity: React.FC<ModalQuantityProps> = ({
                                     padding: 10,
                                     marginVertical: 10,
                                     width: "80%",
+                                    backgroundColor: "#2e2e2e",
+                                    color: "#fff"
                                 }}
                                 placeholder="Digite a quantidade a adicionar/remover"
                                 keyboardType="numeric"

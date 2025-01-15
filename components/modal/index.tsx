@@ -1,6 +1,13 @@
 import React from "react";
 import { Modal, View, Alert } from "react-native";
-import { ModalContent, ModalHeader, Text, BoldText, Button, ButtonText } from "./styles";
+import {
+  ModalContent,
+  ModalHeader,
+  Text,
+  BoldText,
+  Button,
+  ButtonText,
+} from "./styles";
 import { ItemProps } from "@/types/itemEstoque";
 
 interface ModalEstoqueProps {
@@ -41,7 +48,7 @@ const ModalEstoque: React.FC<ModalEstoqueProps> = ({
             </ModalHeader>
           )}
 
-<Button onPress={handleUpdateQuantity}>
+          <Button onPress={handleUpdateQuantity}>
             <ButtonText>Atualizar Quantidade</ButtonText>
           </Button>
           <Button onPress={handleUpdateProduct}>
