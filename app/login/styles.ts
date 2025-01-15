@@ -26,5 +26,4 @@ export const Image = styled.Image`
     margin-bottom: 40;
     margin-left: 15;
     align-self: "center"
-
 `;

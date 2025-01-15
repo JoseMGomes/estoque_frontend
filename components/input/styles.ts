@@ -1,3 +1,4 @@
+import { colors } from '@/constants/colors';
 import styled from 'styled-components/native';
 
 export const Container = styled.View`
@@ -14,3 +15,4 @@ export const InputComponent = styled.TextInput`
   width: 250px;
   color: #9e9e9e;
 `;
+

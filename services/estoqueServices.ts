@@ -31,8 +31,6 @@ export async function patchUpdateItemQuantityAsync(
   
 ) {
   try {
-    console.log(body)
-    console.log(stockId)
     const { data }: RegisterItemPropsResponse = await api.patch(
       `/products/${stockId}/quantity`,
       body

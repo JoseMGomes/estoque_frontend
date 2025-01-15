@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { Form } from "@unform/mobile";
 import { Container, Content, Image, Label } from "./styles";
 import { Alert } from "react-native";
@@ -11,19 +11,36 @@ import Input from "@/components/input";
 
 const Login: React.FC = () => {
   const formRef: any = useRef(null);
+  const [errors, setErrors] = useState<{ email?: string; password?: string }>({});
 
   const handleSubmit = async (data: LoginUser) => {
     try {
+      setErrors({}); 
+
       const response = await postSignInUserAsync(data);
-      console.log("botão entrar");
 
       if (typeof response === "boolean") {
-        Alert.alert("Erro", "Verifique sua senha e email");
-        return false;
+        setErrors({
+          email: "Usuário não encontrado.",
+          password: "Verifique sua senha.",
+        });
+        return;
       }
-      router.push("/home")
-    } catch (err) {
-      Alert.alert("Erro ao autenticar", "Verifique sua senha e email");
+
+      router.push("/home");
+    } catch (err: any) {
+      if (err.response && err.response.data) {
+        const { details } = err.response.data;
+        
+        const fieldErrors = details.reduce((acc: any, detail: any) => {
+          acc[detail.path] = detail.message;
+          return acc;
+        }, {});
+
+        setErrors(fieldErrors);
+      } else {
+        Alert.alert("Erro ao autenticar", "Ocorreu um erro inesperado.");
+      }
     }
   };
 
@@ -31,20 +48,27 @@ const Login: React.FC = () => {
     <Container>
       <Content>
         <Form ref={formRef} onSubmit={handleSubmit}>
-        <Image source={require("../../assets/images/mindGroup.png")}/>
+          <Image source={require("../../assets/images/mindGroup.png")} />
           <Title title="Seja Bem Vindo!" />
+
           <Label>E-mail:</Label>
-          <Input name="email" placeholder="Digite seu e-mail" />
+          <Input
+            name="email"
+            placeholder="Digite seu e-mail"
+            error={errors.email} 
+          />
+          
+
           <Label>Senha:</Label>
           <Input
             name="password"
             placeholder="Digite sua senha"
             secureTextEntry
+            error={errors.password} 
           />
-          <Button
-            title="Entrar"
-            onPress={() => formRef.current?.submitForm()}
-          />
+          
+
+          <Button title="Entrar" onPress={() => formRef.current?.submitForm()} />
         </Form>
       </Content>
     </Container>
