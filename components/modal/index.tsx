@@ -16,6 +16,7 @@ const ModalEstoque: React.FC<ModalEstoqueProps> = ({
   visible,
   setVisible,
   selectedItem,
+  handleUpdateQuantity,
   handleUpdateProduct,
   handleDeleteProduct,
 }) => {
@@ -40,6 +41,9 @@ const ModalEstoque: React.FC<ModalEstoqueProps> = ({
             </ModalHeader>
           )}
 
+<Button onPress={handleUpdateQuantity}>
+            <ButtonText>Atualizar Quantidade</ButtonText>
+          </Button>
           <Button onPress={handleUpdateProduct}>
             <ButtonText>Atualizar Produto</ButtonText>
           </Button>

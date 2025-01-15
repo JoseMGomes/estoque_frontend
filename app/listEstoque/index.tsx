@@ -8,6 +8,7 @@ import { colors } from "@/constants/colors";
 import { router } from "expo-router";
 import ModalEstoque from "@/components/modal";
 import { Container } from "./styles";
+import ModalQuantity from "@/components/modalQuantity";
 
 
 export const ListEstoque: React.FC = () => {
@@ -141,7 +142,15 @@ export const ListEstoque: React.FC = () => {
         )}
         keyExtractor={(item: ItemProps) => item.id.toString()}
       />
-
+    <ModalQuantity
+      quantityChange={quantityChange}
+      setQuantityChange={setQuantityChange}
+      visible ={editQuantityModalVisible}
+      setVisible={setEditQuantityModalVisible}
+      selectedItem={selectedItem}
+      handleAddQuantity={handleAddQuantity}
+      handleRemoveQuantity={handleRemoveQuantity}
+    />
       <ModalEstoque
         visible={modalVisible}
         setVisible={setModalVisible}
